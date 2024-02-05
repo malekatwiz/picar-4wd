@@ -118,6 +118,13 @@ def main():
             else:
                 print("Run: `picar-4wd web-example enable/disable` to enable/disable start on boot")
                 os.system(f"sudo python3 /home/{user_name}/picar-4wd/examples/web/start.py")
+        elif command == "debug":
+            if len(sys.argv) >= 3:
+                newAngle = int(sys.argv[2])
+                print("newAngle", newAngle)
+                from .servo import Servo
+                Servo.set_angle(newAngle)
+                print("Servo set to", newAngle)
         elif command == "test":
             from picar_4wd import forward, get_distance_at, get_grayscale_list,stop
             if len(sys.argv) >= 3:
